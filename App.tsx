@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import StoryList from "./components/StoryList";
 import Constants from 'expo-constants';
@@ -26,9 +26,9 @@ export default () => {
   const renderScene = SceneMap(storyTypes.reduce((map, key) => {
     const newMap = Object.assign({}, map);
     newMap[key] = () => (
-      <ScrollView style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <StoryList storyType={key} numStories={numStories}/>
-      </ScrollView>
+      </SafeAreaView>
     );
     return newMap;
   }, {}));
@@ -43,16 +43,14 @@ export default () => {
   };
 
   return (
-    <>
-      <TabView
-        renderScene={renderScene}
-        renderTabBar={renderTabBar}
-        onIndexChange={setIndex}
-        navigationState={{index, routes}}
-        initialLayout={initialLayout}
-        style={styles.tabs}
-      />
-    </>
+    <TabView
+      renderScene={renderScene}
+      renderTabBar={renderTabBar}
+      onIndexChange={setIndex}
+      navigationState={{index, routes}}
+      initialLayout={initialLayout}
+      style={styles.tabs}
+    />
   );
 }
 
