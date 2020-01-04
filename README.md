@@ -2,7 +2,6 @@
 [NOTE] This is a sample app for React Native Expo.
 
 A [Hacker News](https://news.ycombinator.com/) client built with [React Native Expo](https://expo.io/).
-![App Image](./images/screenshot.jpeg)
 
 ## Run app
 ```console
@@ -17,3 +16,7 @@ Also you can run app [on Android/iOS emulators](https://expo.io/tools#client).
 
 ## License
 See [LICENSE](./LICENSE).
+
+## Screenshot
+![App Image](./images/screenshot.jpeg)
+
