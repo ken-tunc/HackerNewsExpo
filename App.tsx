@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dimensions, SafeAreaView, StyleSheet} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import StoryList from "./components/StoryList";
+import StoryList from "./src/components/StoryList";
 import Constants from 'expo-constants';
 
 const numStories = 20;
