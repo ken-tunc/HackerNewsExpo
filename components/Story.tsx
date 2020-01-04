@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Text} from "react-native";
-import {Card} from "react-native-elements";
+import {Alert, Linking, StyleSheet, Text} from "react-native";
+import {Button, Card} from "react-native-elements";
 import axios from 'axios';
 import {HNStory} from "../types";
 
@@ -34,6 +34,14 @@ const Story: React.FC<IProps> = ({storyId}) => {
       <Text style={styles.cardText}>
         {story.score} points by {story.by} {convertPostedDate(story.time)}
       </Text>
+      <Button
+        icon={{name: 'open-in-browser'}}
+        title="Open in Browser"
+        type="outline"
+        onPress={() => {
+          openUrl(story.url)
+        }}
+      />
     </Card>
   )
 };
@@ -43,6 +51,19 @@ const convertPostedDate = (timestamp: number): String => {
   return date.toDateString();
 };
 
+const openUrl = (url: string) => {
+  Linking.canOpenURL(url)
+    .then((supported) => {
+      if (!supported) {
+        Alert.alert("Can't open the website.");
+        console.log("Can't handle url: " + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    })
+    .catch((err) => console.error('An error occurred', err));
+};
+
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
@@ -50,6 +71,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     textAlign: 'center',
+    marginBottom: 10,
   },
 });
 
