@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text} from "react-native";
+import {Card} from "react-native-elements";
 import axios from 'axios';
 import {HNStory} from "../types";
 
@@ -20,18 +21,20 @@ const Story: React.FC<IProps> = ({storyId}) => {
 
   if (story == null) {
     return (
-      <View style={styles.card}>
-        <Text>loading...</Text>
-      </View>
-    )
+      <Card
+        title="loading..."
+        containerStyle={styles.cardContainer}/>
+    );
   }
 
   return (
-    <View style={styles.card}>
-      <Text>{story.title}</Text>
-      <Text>Score: {story.score}</Text>
-      <Text>posted by {story.by} at {convertPostedDate(story.time)}</Text>
-    </View>
+    <Card
+      title={story.title}
+      containerStyle={styles.cardContainer}>
+      <Text style={styles.cardText}>
+        {story.score} points by {story.by} {convertPostedDate(story.time)}
+      </Text>
+    </Card>
   )
 };
 
@@ -41,8 +44,11 @@ const convertPostedDate = (timestamp: number): String => {
 };
 
 const styles = StyleSheet.create({
-  card: {
+  cardContainer: {
     flex: 1,
+  },
+  cardText: {
+    textAlign: 'center',
   },
 });
 

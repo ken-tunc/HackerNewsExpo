@@ -35,6 +35,7 @@ const StoryList: React.FC<IProps> = ({storyType, numStories}) => {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
+    paddingBottom: 10,
   },
 });
 
