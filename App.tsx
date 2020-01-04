@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
-import {SceneMap, TabView} from 'react-native-tab-view';
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import StoryList from "./components/StoryList";
 import Constants from 'expo-constants';
 
@@ -33,10 +33,20 @@ export default () => {
     return newMap;
   }, {}));
 
+  const renderTabBar = (props) => {
+    return (
+      <TabBar
+        {...props}
+        style={styles.tabBar}
+      />
+    );
+  };
+
   return (
     <>
       <TabView
         renderScene={renderScene}
+        renderTabBar={renderTabBar}
         onIndexChange={setIndex}
         navigationState={{index, routes}}
         initialLayout={initialLayout}
@@ -49,6 +59,9 @@ export default () => {
 const styles = StyleSheet.create({
   tabs: {
     marginTop: Constants.statusBarHeight,
+  },
+  tabBar: {
+    backgroundColor: '#ff6600',
   },
   container: {
     flex: 1,

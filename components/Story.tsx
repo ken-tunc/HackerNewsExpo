@@ -46,6 +46,7 @@ const convertPostedDate = (timestamp: number): String => {
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
+    backgroundColor: '#f6f6ef'
   },
   cardText: {
     textAlign: 'center',
